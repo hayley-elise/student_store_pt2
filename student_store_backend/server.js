@@ -4,6 +4,8 @@ const morgan = require("morgan")
 const { PORT } = require("./config")
 const { NotFoundError } = require("./utils/errors")
 const authRoutes = require("./routes/auth")
+const storeRoutes = require("./routes/store")
+const orderRoutes = require("./routes/order")
 
 const app = express()
 
@@ -17,6 +19,8 @@ app.use(express.json())
 app.use(morgan("tiny"))
 
 app.use("/auth", authRoutes)
+app.use("/store", storeRoutes)
+app.use("/order", orderRoutes)
 
 /** Handle 404 errors -- this matches everything */
 app.use((req, res, next) => {
@@ -34,5 +38,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
+  console.log(`🚀 Server running: http://localhost:${PORT}`)
 })
