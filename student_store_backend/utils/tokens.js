@@ -7,7 +7,7 @@ const generateToken = (data) => jwt.sign(data, SECRET_KEY)
 const createUserJwt = (user) => {
     const payload = {
         email: user.email,
-        is_admin: user.is_admin || false,
+        isAdmin: user.isAdmin || false,
     }
 
     return generateToken(payload)
