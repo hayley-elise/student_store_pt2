@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import apiClient from "../../../services/apiClient"
 import axios from "axios"
 import Home from "../Home/Home"
 import Signup from "../Signup/Signup"
@@ -74,6 +75,21 @@ export default function App() {
 
     fetchProducts()
   }, [])
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {data, error} = await apiClient.fetchAuthedUser()
+      if (data) setUser(data.user)
+      if (error) setError(error)
+    }
+
+    const token = localStorage.getItem("student_store_token")
+
+    if (token) {
+      apiClient.setToken(token)
+      fetchUser()
+    }
+  },[])
 
   return (
     <div className="App">
