@@ -5,6 +5,8 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 3001
 
 const IS_TESTING = process.env.NODE_ENV === "test"
 
+const SECRET_KEY = process.env.SECRET_KEY || "lalalalala"
+
 function getDatabaseUri() {
   const dbUser = process.env.DATABASE_USER || "postgres"
   const dbPass = process.env.DATABASE_PASS ? encodeURI(process.env.DATABASE_PASS) : "postgres"
@@ -31,5 +33,6 @@ module.exports = {
   PORT,
   IS_TESTING,
   BCRYPT_WORK_FACTOR,
+  SECRET_KEY,
   getDatabaseUri,
 }
