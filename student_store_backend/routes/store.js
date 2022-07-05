@@ -4,9 +4,10 @@ const router = express.Router()
 
 router.get("/", async (req, res, next) => {
     try {
-        const list = await Store.listProducts(req)
-        const product = res.json({list})
-        return product["id"]
+        const {productId} = req.params
+        const products = await Store.listProducts()
+        const product = await Store.fetchProductById(productId)
+        return res.status(200).json({product})
     } catch(err) {
         next(err)
     }
