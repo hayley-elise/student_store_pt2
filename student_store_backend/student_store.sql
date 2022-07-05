@@ -6,6 +6,7 @@ CREATE DATABASE student_store;
 
 \connect student_store
 \i student_store_schema.sql
+\i student_store_seed.sql
 
 
 -- \echo 'Delete and recreate Student Store database?'
